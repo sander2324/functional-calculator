@@ -10,9 +10,15 @@ function ButtonGrid() {
   return (
     <View style={styles.buttonGrid}>
       <View style={styles.buttonRow}>
+        <InputButton value="MC" action={actions.CLEAR_MEMORY} />
+        <InputButton value="M-" action={actions.SUBTRACT_MEMORY} />
+        <InputButton value="M+" action={actions.ADD_MEMORY} />
+        <InputButton value="MR" action={actions.DISPATCH_MEMORY} />
+      </View>
+      <View style={styles.buttonRow}>
         <InputButton value="C" action={actions.CLEAR} />
-        <InputButton value="M+" action={actions.STORE_MEMORY} />
-        <InputButton value="M-" action={actions.DISPATCH_MEMORY} />
+        <InputButton value="" />
+        <InputButton value="" />
         <InputButton value="/" />
       </View>
       <View style={styles.buttonRow}>

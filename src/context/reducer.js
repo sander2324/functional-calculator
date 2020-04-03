@@ -24,7 +24,10 @@ function inputReducer(state, action) {
     }
 
     case actions.CLEAR: {
-      return initialState;
+      return {
+        ...initialState,
+        memory: state.memory,
+      };
     }
 
     case actions.REMOVE_CHAR: {
@@ -36,19 +39,44 @@ function inputReducer(state, action) {
       };
     }
 
-    case actions.STORE_MEMORY: {
+    case actions.ADD_MEMORY: {
+      const memoryAddition = Number(state.display);
+      if (Number.isNaN(memoryAddition)) return state;
+
+      const previousMemory = state.memory || 0;
       return {
-        memory: state.display,
-        display: initialState.display,
+        ...state,
+        memory: previousMemory + memoryAddition,
+      };
+    }
+
+    case actions.SUBTRACT_MEMORY: {
+      const memorySubtraction = Number(state.display);
+      if (Number.isNaN(memorySubtraction) || !state.memory) {
+        return state;
+      }
+
+      return {
+        ...state,
+        memory: state.memory - memorySubtraction,
       };
     }
 
     case actions.DISPATCH_MEMORY: {
+      if (!state.memory) return state;
+
       const newDisplay = `${state.display}${state.memory}`;
       return {
         ...state,
         display: newDisplay,
         answer: calculateValue(newDisplay),
+      };
+    }
+
+    case actions.CLEAR_MEMORY: {
+      return {
+        ...state,
+        memory: null,
       };
     }
 

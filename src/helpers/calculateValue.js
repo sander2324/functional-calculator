@@ -2,6 +2,8 @@ function calculateValue(value) {
   // Strip everything that isn't a digit or an allowed operator
   const strippedValue = value.replace(/[^-().\d/*+]/g, '');
 
+  if (!strippedValue) return '';
+
   let calculatedValue;
   try {
     // eslint-disable-next-line no-eval

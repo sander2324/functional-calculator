@@ -1,6 +1,6 @@
 const initialState = {
   display: '',
-  memory: '',
+  memory: null,
   answer: '',
 };
 
